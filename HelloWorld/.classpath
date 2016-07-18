@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/apache-commons-lang.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/hadoop-client-2.7.1.jar"/>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/hadoop-common-2.7.1.jar"/>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/hadoop-core-1.2.1.jar"/>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/hadoop-hdfs-2.7.1.jar"/>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/json-20140107.jar"/>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/json-simple-1.1.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/jstl-api-1.2.jar.zip">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/jstl-impl.jar.zip">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/oozie-core-4.1.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/spring-context-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/spring-core-3.1.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/sqoop-client-1.99.2.jar"/>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/sqoop-common-1.99.3.jar"/>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/sqoop-connector-generic-jdbc-1.99.2.jar"/>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/sshxcute-1.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/mysql-connector-java-5.1.39/mysql-connector-java-5.1.39-bin.jar"/>
+	<classpathentry kind="lib" path="/home/cloudera/WorkSpaceKogentix/JARS/oozie-client-4.1.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0 (2)">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

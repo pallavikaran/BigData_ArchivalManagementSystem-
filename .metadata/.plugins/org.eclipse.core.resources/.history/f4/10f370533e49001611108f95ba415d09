@@ -1,0 +1,9 @@
+package pojo;
+
+public class OozieJobFormBean {
+
+	private String oozieJobID=null;
+	private String oozieJobStatus=null;
+	private String oozieJobTimeTaken=null;
+	
+}

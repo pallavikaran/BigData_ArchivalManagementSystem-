@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Archival Management System</title>
+</head>
+<body>
+<form action="submitSystemType" method="post">
+<center>
+<br><br><br><br><br><br><br><br><br>
+ <table border="1">
+ 	<tr>
+ 		<td>Archival Management System</td> 
+ 	</tr>
+ 	<tr>
+		<td><input type="radio" name="radiogroup" value="existSys" checked="checked">Select Existing System for Archival</td>
+	</tr>
+	<tr>
+		<td><input type="radio" name="radiogroup" value="newsys">Register System for Archival</td>
+	</tr>
+	<tr>
+		<td><input type="submit" value="Submit" name="submit"></td>
+	</tr>	
+</table>
+	</center>
+	</form>
+</body>
+</html>

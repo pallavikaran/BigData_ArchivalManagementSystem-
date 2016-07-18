@@ -1,0 +1,283 @@
+package dataAccessObject;
+
+import java.sql.DriverManager;
+import dataAccessObject.*;
+import pojo.DBToArchiveFormBean;
+
+import java.sql.ResultSet;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import FormBean.MySqlFormBean;
+
+
+
+public class MysqlDAO {
+	
+	//For Authenticating the AMS user login 
+	public boolean amsUserAuthetication(MySqlFormBean msqlBean){
+		Connection connect=null;
+		Statement statement=null;
+		PreparedStatement preparedStatement =null;
+		ResultSet resultset =null;
+		boolean strReturn=false;
+		
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			System.out.println(msqlBean.getUsername()+"|"+msqlBean.getPassword());
+			String conStr="jdbc:mysql://localhost/metadata_storage?user=root&password=cloudera";//Log in to mySql
+			connect = (Connection) DriverManager.getConnection(conStr);
+			
+			statement =connect.createStatement();
+			resultset =statement.executeQuery("select userpassword from metadata_users where username='"+msqlBean.getUsername()+"'");
+			System.out.println("***********"+statement.getMaxRows());
+			while(resultset.next()){
+				String passwordFromMetaData_users=resultset.getNString(1);
+				if(passwordFromMetaData_users.equals(msqlBean.getPassword())){
+					strReturn=true;
+				}
+				else{
+					strReturn=false;
+				}
+			}
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+		}
+		finally{
+			try{ 
+				if(resultset!=null){
+					resultset.close();
+				}
+				if(statement!=null){
+					statement.close();
+				}
+				if(connect!=null){
+					connect.close();
+				}
+			}
+			catch(Exception exx){
+				exx.printStackTrace();
+			}
+		}
+		return strReturn;
+	}
+	
+	
+	//For Storing the Metadata
+	public ArrayList mysqlMetaDataStoreFetch(){
+		Connection connect=null;
+		Statement statement=null;
+		Statement statement1=null;
+		PreparedStatement preparedStatement =null;
+		ResultSet resultset =null;
+		ResultSet resultset1 =null;
+		MySqlFormBean msqlBean = new MySqlFormBean();
+		Map<Integer,String> metadata=new HashMap<Integer,String>();
+		ArrayList Rows = new ArrayList();
+		ArrayList row = new ArrayList();
+	       //for (int i = 1; i <= rowCount ; i++){
+	       int i=0;
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			String conStr="jdbc:mysql://localhost/metadata_storage?user=root&password=cloudera";//Log in to mySql
+			connect = (Connection) DriverManager.getConnection(conStr);
+			 statement =connect.createStatement();
+			resultset =statement.executeQuery("select * from metadata_store where database_type='mysql'");	
+				 while (resultset.next()){
+			               row.add(resultset.getString("connection_string"));
+			               System.out.println(resultset.getString(""));
+			       Rows.add(row);
+			       //i++;
+			    }
+
+			//}
+		}	catch(Exception exx){
+				exx.printStackTrace();
+			}
+		finally{
+			try{ 
+				if(resultset1!=null){
+					resultset1.close();
+				}
+				if(statement1!=null){
+					statement1.close();
+				}
+				if(resultset!=null){
+					resultset.close();
+				}
+				if(statement!=null){
+					statement.close();
+				}
+				if(connect!=null){
+					connect.close();
+				}
+			}
+			catch(Exception exx){
+				exx.printStackTrace();
+			}
+		}
+		return Rows;
+	}
+	
+	//For Retrieving metaData
+	@SuppressWarnings("null")
+	public boolean mysqlMetaDataStoreSave(DBToArchiveFormBean objDBToArchiveFormBean){
+		Connection connect=null;
+		Statement statement=null;
+		PreparedStatement preparedStatement =null;
+		ResultSet resultset =null;
+		MySqlFormBean msqlBean = new MySqlFormBean();
+		
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			String conStr="jdbc:mysql://localhost/metadata_storage?user=root&password=cloudera";//Log in to mySql
+			connect = (Connection) DriverManager.getConnection(conStr);
+			UtilityDAO objUtilityDAO= new UtilityDAO();
+			int maxid=objUtilityDAO.getMaxIdOfTable("metadata_store","id");
+			int nextmaxId=maxid+1;
+			String query="insert into metadata_store (id, connection_string, database_type, hostname, portnumber, servicename,username,password,system_date,system_username,status)"
+					+ "values (?,?,?,?,?,?,?,?,?,?,?)"; 
+			System.out.println(query);
+			preparedStatement=connect.prepareStatement(query);
+			
+			preparedStatement.setInt(1, nextmaxId);
+			if(objDBToArchiveFormBean.getrConnectionString()!=null && !objDBToArchiveFormBean.getrConnectionString().equalsIgnoreCase("")){
+				preparedStatement.setString(2, objDBToArchiveFormBean.getrConnectionString());
+			}
+			else{
+				preparedStatement.setString(2, null);
+			}
+			
+			if(objDBToArchiveFormBean.getrDBType()!=null && !objDBToArchiveFormBean.getrDBType().equalsIgnoreCase("")){
+				preparedStatement.setString(3, objDBToArchiveFormBean.getrDBType());
+			}
+			else{
+				preparedStatement.setString(3, null);
+			}
+			
+			if(objDBToArchiveFormBean.getrHostName()!=null && !objDBToArchiveFormBean.getrHostName().equalsIgnoreCase("")){
+				preparedStatement.setString(4, objDBToArchiveFormBean.getrHostName());
+			}
+			else{
+				preparedStatement.setString(4, null);
+			}
+			
+			if(objDBToArchiveFormBean.getrPortNumber()!=null && !objDBToArchiveFormBean.getrPortNumber().equalsIgnoreCase("")){
+				preparedStatement.setInt(5, Integer.parseInt(objDBToArchiveFormBean.getrPortNumber()));
+			}
+			else{
+				preparedStatement.setInt(5, -1);
+			}
+			
+			if(objDBToArchiveFormBean.getrServiceName()!=null && !objDBToArchiveFormBean.getrServiceName().equalsIgnoreCase("")){
+				preparedStatement.setString(6, objDBToArchiveFormBean.getrServiceName());
+			}
+			else{
+				preparedStatement.setString(6, null);
+			}
+			
+			if(objDBToArchiveFormBean.getrUsername()!=null && !objDBToArchiveFormBean.getrUsername().equalsIgnoreCase("")){
+				preparedStatement.setString(7, objDBToArchiveFormBean.getrUsername());
+			}
+			else{
+				preparedStatement.setString(7, null);
+			}
+			
+			if(objDBToArchiveFormBean.getrPassword()!=null && !objDBToArchiveFormBean.getrPassword().equalsIgnoreCase("")){
+				preparedStatement.setString(8, objDBToArchiveFormBean.getrPassword());
+			}
+			else{
+				preparedStatement.setString(8, null);
+			}
+			
+			java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+			preparedStatement.setTimestamp(9, date);
+			preparedStatement.setString(10, "SYS");
+			preparedStatement.setString(11, "A");
+			preparedStatement.execute();
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+		}
+		finally{
+			try{ 
+				if(resultset!=null){
+					resultset.close();
+				}
+				if(statement!=null){
+					statement.close();
+				}
+				if(connect!=null){
+					connect.close();
+				}
+			}
+			catch(Exception exx){
+				exx.printStackTrace();
+			}
+		}
+		return true;
+	}
+	
+	//For populating the tables 
+			public ArrayList mysqlPopulateTables(MySqlFormBean objMySqlFormBean){
+				Connection connect=null;
+				Statement statement=null;
+				PreparedStatement preparedStatement =null;
+				ResultSet resultset =null;
+				boolean strReturn=false;
+				ArrayList Rows = new ArrayList();
+				try{
+					//Class.forName("oracle.jdbc.driver.OracleDriver");
+					Class.forName("com.mysql.jdbc.Driver");
+					System.out.println("objOracleFormBean.getSelectedMysqlDBConString(): "+objMySqlFormBean.getSelectedMysqlDBConString());
+					//connect = (Connection) DriverManager.getConnection(objMySqlFormBean.getSelectedMysqlDBConString(),"amsdatabase","ams_database");
+					//String conStr="jdbc:mysql://localhost/metadata_storage?user=root&password=cloudera";//Log in to mySql
+					String conStr=objMySqlFormBean.getSelectedMysqlDBConString();
+					connect = (Connection) DriverManager.getConnection(conStr);
+					statement =connect.createStatement();
+					resultset =statement.executeQuery("show tables");
+					while(resultset.next()){
+						ArrayList row = new ArrayList();
+					       for (int i = 1; i <= resultset.getRow() ; i++){
+					               row.add(resultset.getString(i));
+					               System.out.println("resultset.getString("+i+"): "+resultset.getString(i));
+					       }
+
+					       Rows.add(row);
+					}
+				}
+				catch(Exception ex){
+					ex.printStackTrace();
+				}
+				finally{
+					try{ 
+						if(resultset!=null){
+							resultset.close();
+						}
+						if(statement!=null){
+							statement.close();
+						}
+						if(connect!=null){
+							connect.close();
+						}
+					}
+					catch(Exception exx){
+						exx.printStackTrace();
+					}
+				}
+				return Rows;
+			}
+		
+	
+	
+	
+	
+	
+}

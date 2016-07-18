@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="Sqoop.Workflow1"/>
+<fullyQualifiedTypeName name="pojo.ClusterConnectionFormBean"/>
+<fullyQualifiedTypeName name="com.mysql.jdbc.StringUtils"/>
+<fullyQualifiedTypeName name="org.springframework.util.StringUtils"/>
+<fullyQualifiedTypeName name="pojo.OozieJobFormBean"/>
+<fullyQualifiedTypeName name="org.apache.commons.lang.StringUtils"/>
+</qualifiedTypeNameHistroy>
